@@ -14,15 +14,17 @@ Abstract
 --------
 
 This is a small command-line utility to convert source code to
-syntax-annotated XML. It was written to simplify the importing
-of arbitrary artifacts as syntax highlighted source code into
-Adobe InDesign with the help of its *Import XML* mechanism.
-Internally, code2xml uses the [Syntax](https://github.com/rse/syntax)
+syntax-annotated XML. It is intended to simplify the importing
+of arbitrary source code artifacts as syntax-highlighted source code text into
+[Adobe InDesign](http://www.adobe.com/products/indesign.html) with the help of its
+[Import XML](https://helpx.adobe.com/indesign/using/importing-xml.html) mechanism.
+Internally, *code2xml* uses the Node.js [Syntax](https://github.com/rse/syntax)
 module for highlighting the source code fragments with XML tags
 named `<syntax-root>`, `<syntax-comment>`, `<syntax-keyword>`,
 `<syntax-literal>`, `<syntax-marker>` and `<syntax-anchor-N>`. Use the
-Adobe InDesign *Map Tags to Styles* functionality to map those XML tags
-to Adobe InDesign styles.
+[Adobe InDesign](http://www.adobe.com/products/indesign.html)
+[Map Tags to Styles](https://helpx.adobe.com/indesign/using/importing-xml.html#map_xml_tags_to_styles)
+functionality to map those XML tags to Adobe InDesign styles.
 
 Installation
 ------------
@@ -47,7 +49,7 @@ $ upd [-h] [-V] [-l <language>] [-o <output-file>] [-f <input-file>]
   by the [Syntax](https://github.com/rse/syntax) module.
 - `-o <output-file>`, `--output <output-file>`<br/>
   Either "-" (the default for stdout) or a path to the XML output file.
-- `-i <input-file>`, `--input <input-file>`<br/>
+- `-f <input-file>`, `--file <input-file>`<br/>
   Either "-" (the default for stdin) or a path to the source code input file.
 
 License
