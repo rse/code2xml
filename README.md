@@ -37,7 +37,7 @@ Usage
 -----
 
 ```
-$ upd [-h] [-V] [-l <language>] [-o <output-file>] [-f <input-file>]
+$ code2xml [-h] [-V] [-l <language>] [-o <output-file>] [-f <input-file>]
 ```
 
 - `-h`, `--help`<br/>
