@@ -53,6 +53,18 @@ $ upd [-h] [-V] [-l <language>] [-o <output-file>] [-f <input-file>]
 - `-p <prefix>`, `--prefix <prefix>`<br/>
   Either "syntax-" (the default) or an identifier to prepend to the
   name of all XML elements.
+- `--tab-replace <string>`<br/>
+  replace TAB characters with this string.
+- `--newline-replace <string>`<br/>
+  replace [CR+]LF characters with this string.
+- `--regex-anchor-open <regex>`<br/>
+  use this regular expression for anchor opening constructs.
+- `--regex-anchor-close <regex>`<br/>
+  use this regular expression for anchor closing constructs.
+- `--regex-marker-open <regex>`<br/>
+  use this regular expression for marker opening constructs.
+- `--regex-marker-close <regex>`<br/>
+  use this regular expression for marker closing constructs.
 - `-o <output-file>`, `--output <output-file>`<br/>
   Either "-" (the default for stdout) or a path to the XML output file.
 - `-f <input-file>`, `--file <input-file>`<br/>

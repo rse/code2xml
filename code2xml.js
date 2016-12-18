@@ -47,6 +47,18 @@ const argv = yargs
         .describe("i", "use enclosing <xxx-block-XXX> instead of just <xxx-block>")
     .string("p").nargs("p", 1).alias("p", "prefix").default("p", "syntax-")
         .describe("p", "use prefix on all XML tags")
+    .string("tab-replace").nargs("tab-replace", 1).default("tab-replace", "    ")
+        .describe("tab-replace", "replace TAB characters with this string")
+    .string("newline-replace").nargs("newline-replace").default("newline-replace", "\n")
+        .describe("newline-replace", "replace [CR+]LF characters with this string")
+    .string("regex-anchor-open").nargs("regex-anchor-open", 1).default("regex-anchor-open", "=\\(")
+        .describe("regex-anchor-open", "use this regular expression for anchor opening constructs")
+    .string("regex-anchor-close").nargs("regex-anchor-close", 1).default("regex-anchor-close", "\\)=")
+        .describe("regex-anchor-close", "use this regular expression for anchor closing constructs")
+    .string("regex-marker-open").nargs("regex-marker-open", 1).default("regex-marker-open", "=\\{")
+        .describe("regex-marker-open", "use this regular expression for marker opening constructs")
+    .string("regex-marker-close").nargs("regex-marker-close", 1).default("regex-marker-close", "\\}=")
+        .describe("regex-marker-close", "use this regular expression for marker closing constructs")
     .string("o").nargs("o", 1).alias("o", "output").default("o", "-")
         .describe("o", "write XML output to given file")
     .string("f").nargs("f", 1).alias("f", "input").default("f", "-")
@@ -55,6 +67,7 @@ const argv = yargs
     .showHelpOnFail(true)
     .demand(0)
     .parse(process.argv.slice(2))
+console.log(argv)
 
 /*  short-circuit processing of "-V" command-line option  */
 if (argv.version) {
@@ -95,7 +108,16 @@ else {
 }
 
 /*  create a new syntax highlighting context  */
-let syntax = new Syntax({ language: argv.language, cssPrefix: "" })
+let syntax = new Syntax({
+    cssPrefix:         "",
+    language:          argv.language,
+    tabReplace:        argv.tabReplace,
+    newlineReplace:    argv.newlineReplace,
+    regexAnchorOpen:   argv.regexAnchorOpen,
+    regexAnchorClose:  argv.regexAnchorClose,
+    regexMarkerOpen:   argv.regexMarkerOpen,
+    regexMarkerClose:  argv.regexMarkerClose
+})
 
 /*  parse input  */
 syntax.richtext(input)
