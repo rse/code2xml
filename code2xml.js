@@ -36,7 +36,7 @@ const my = require(path.join(__dirname, "package.json"))
 
 /*  parse command-line arguments  */
 const argv = yargs
-    .usage("Usage: $0 [-h] [-V] [-v] [-l <language>] [-o <outout-file>] -f <input-file>]")
+    .usage("Usage: $0 [options]")
     .help("h").alias("h", "help").default("h", false)
         .describe("h", "show usage help")
     .boolean("V").alias("V", "version").default("V", false)
@@ -67,7 +67,6 @@ const argv = yargs
     .showHelpOnFail(true)
     .demand(0)
     .parse(process.argv.slice(2))
-console.log(argv)
 
 /*  short-circuit processing of "-V" command-line option  */
 if (argv.version) {
