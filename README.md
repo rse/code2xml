@@ -70,6 +70,30 @@ $ upd [-h] [-V] [-l <language>] [-o <output-file>] [-f <input-file>]
 - `-f <input-file>`, `--file <input-file>`<br/>
   Either "-" (the default for stdin) or a path to the source code input file.
 
+Example
+-------
+
+```sh
+$ cat sample.js
+/* sample comment */
+const foo = (arg1, arg2=(1)=, arg3) => {
+    var foo  = 42
+={    var bar  = "baz"    }= =(2)=
+    var quux = /foo\/bar"quux"/
+    return foo + bar + quux
+}
+
+$ code2xml -f sample.js
+<syntax-root><syntax-block><syntax-comment>/* sample comment */</syntax-comment>
+<syntax-keyword>const</syntax-keyword> foo = (arg1, arg2<syntax-anchor-1></syntax-anchor-1>, arg3) =&gt; {
+    <syntax-keyword>var</syntax-keyword> foo  = <syntax-literal>42</syntax-literal>
+<syntax-marker>    </syntax-marker><syntax-keyword><syntax-marker>var</syntax-marker></syntax-keyword><syntax-marker> bar  = </syntax-marker><syntax-literal><syntax-marker>"baz"</syntax-marker></syntax-literal><syntax-marker>    </syntax-marker> <syntax-anchor-2></syntax-anchor-2>
+    <syntax-keyword>var</syntax-keyword> quux = <syntax-literal>/foo\/bar"quux"/</syntax-literal>
+    <syntax-keyword>return</syntax-keyword> foo + bar + quux
+}
+</syntax-block></syntax-root>
+```
+
 License
 -------
 
