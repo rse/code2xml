@@ -44,7 +44,9 @@ const argv = yargs
     .string("l").nargs("l", 1).alias("l", "language").default("l", "auto")
         .describe("l", "force particular language ()")
     .string("i").nargs("i", 1).alias("i", "id").default("i", "")
-        .describe("i", "use enclosing <syntax-block-XXX> instead of just <syntax-block>")
+        .describe("i", "use enclosing <xxx-block-XXX> instead of just <xxx-block>")
+    .string("p").nargs("p", 1).alias("p", "prefix").default("p", "syntax-")
+        .describe("p", "use prefix on all XML tags")
     .string("o").nargs("o", 1).alias("o", "output").default("o", "-")
         .describe("o", "write XML output to given file")
     .string("f").nargs("f", 1).alias("f", "input").default("f", "-")
@@ -53,7 +55,6 @@ const argv = yargs
     .showHelpOnFail(true)
     .demand(0)
     .parse(process.argv.slice(2))
-console.log(argv)
 
 /*  short-circuit processing of "-V" command-line option  */
 if (argv.version) {
@@ -102,10 +103,10 @@ syntax.richtext(input)
 /*  generate XML output  */
 let xml = syntax.html()
 if (argv.id !== "")
-    xml = `<syntax-block-${argv.id}>${xml}</syntax-block-${argv.id}>`
+    xml = `<${argv.prefix}block-${argv.id}>${xml}</${argv.prefix}block-${argv.id}>`
 else
-    xml = `<syntax-block>${xml}</syntax-block>`
-xml = `<syntax-root>${xml}</syntax-root>`
+    xml = `<${argv.prefix}block>${xml}</${argv.prefix}block>`
+xml = `<${argv.prefix}root>${xml}</${argv.prefix}root>`
 let lexer = new Tokenizr()
 lexer.rule(/<span\s+class="(.+?)">/, (ctx, match) => { ctx.accept("tag-open", match[1]) })
 lexer.rule(/<\/span>/,               (ctx, match) => { ctx.accept("tag-close")          })
@@ -121,12 +122,12 @@ lexer.tokens().forEach((token) => {
         let m
         if ((m = value.match(/^anchor\s+anchor-(\d+)$/)) !== null)
             value = `anchor-${m[1]}`
-        output += `<syntax-${value}>`
+        output += `<${argv.prefix}${value}>`
         stack.push(value)
     }
     else if (token.type === "tag-close") {
         let value = stack.pop()
-        output += `</syntax-${value}>`
+        output += `</${argv.prefix}${value}>`
     }
     else
         output += token.text

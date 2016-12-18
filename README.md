@@ -20,8 +20,8 @@ of arbitrary source code artifacts as syntax-highlighted source code text into
 [Import XML](https://helpx.adobe.com/indesign/using/importing-xml.html) mechanism.
 Internally, *code2xml* uses the Node.js [Syntax](https://github.com/rse/syntax)
 module for highlighting the source code fragments with XML tags
-named `<syntax-root>` (root), `<syntax-block[-XXX]>` (enclosure), `<syntax-comment>`, `<syntax-keyword>`,
-`<syntax-literal>`, `<syntax-marker>` and `<syntax-anchor-N>`. Use the
+named `<xxx-root>` (root element), `<xxx-block[-XXX]>` (enclosure element), `<xxx-comment>`, `<xxx-keyword>`,
+`<xxx-literal>`, `<xxx-marker>` and `<xxx-anchor-N>`. Use the
 [Adobe InDesign](http://www.adobe.com/products/indesign.html)
 [Map Tags to Styles](https://helpx.adobe.com/indesign/using/importing-xml.html#map_xml_tags_to_styles)
 functionality to map those XML tags to Adobe InDesign styles.
@@ -47,6 +47,12 @@ $ upd [-h] [-V] [-l <language>] [-o <output-file>] [-f <input-file>]
 - `-l <language>`, `--language <language>`<br/>
   Either "auto" (the default) or one of the languages understood
   by the [Syntax](https://github.com/rse/syntax) module.
+- `-i <id>`, `--id <id>`<br/>
+  Either "" (the default for none) or an identifier to append to the
+  name of the enclosure XML element `<xxx-block>`.
+- `-p <prefix>`, `--prefix <prefix>`<br/>
+  Either "syntax-" (the default) or an identifier to prepend to the
+  name of all XML elements.
 - `-o <output-file>`, `--output <output-file>`<br/>
   Either "-" (the default for stdout) or a path to the XML output file.
 - `-f <input-file>`, `--file <input-file>`<br/>
