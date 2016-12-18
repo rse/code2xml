@@ -20,7 +20,7 @@ of arbitrary source code artifacts as syntax-highlighted source code text into
 [Import XML](https://helpx.adobe.com/indesign/using/importing-xml.html) mechanism.
 Internally, *code2xml* uses the Node.js [Syntax](https://github.com/rse/syntax)
 module for highlighting the source code fragments with XML tags
-named `<syntax-root>`, `<syntax-comment>`, `<syntax-keyword>`,
+named `<syntax-root>` (root), `<syntax-block[-XXX]>` (enclosure), `<syntax-comment>`, `<syntax-keyword>`,
 `<syntax-literal>`, `<syntax-marker>` and `<syntax-anchor-N>`. Use the
 [Adobe InDesign](http://www.adobe.com/products/indesign.html)
 [Map Tags to Styles](https://helpx.adobe.com/indesign/using/importing-xml.html#map_xml_tags_to_styles)
