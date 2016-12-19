@@ -53,13 +53,13 @@ $ code2xml [-h] [-V] [-l <language>] [-o <output-file>] [-f <input-file>]
 - `-p <prefix>`, `--prefix <prefix>`<br/>
   Either "syntax-" (the default) or an identifier to prepend to the
   name of all XML elements.
-- `--no-declaration`<br/>
+- `--without-declaration`<br/>
   Do not emit XML declaration.
-- `--no-root`<br/>
+- `--without-root`<br/>
   Do not emit root element `<xxx-root>`.
-- `--no-file`<br/>
+- `--without-file`<br/>
   Do not emit file element `<xxx-file[-XXX]>`.
-- `--no-block`<br/>
+- `--without-block`<br/>
   Do not emit block element `<xxx-block>`.
 - `--tab-replace <string>`<br/>
   replace TAB characters with this string.
