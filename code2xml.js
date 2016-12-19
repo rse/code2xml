@@ -47,6 +47,14 @@ const argv = yargs
         .describe("i", "use enclosing <xxx-block-XXX> instead of just <xxx-block>")
     .string("p").nargs("p", 1).alias("p", "prefix").default("p", "syntax-")
         .describe("p", "use prefix on all XML tags")
+    .boolean("no-declaration").default("no-declaration", false)
+        .describe("no-declaration", "do not emit XML declaration")
+    .boolean("no-root").default("no-root", false)
+        .describe("no-root", "do not emit root element <xxx-root>")
+    .boolean("no-file").default("no-file", false)
+        .describe("no-file", "do not emit file element <xxx-file[-XXX]>")
+    .boolean("no-block").default("no-block", false)
+        .describe("no-block", "do not emit block element <xxx-block>")
     .string("tab-replace").nargs("tab-replace", 1).default("tab-replace", "    ")
         .describe("tab-replace", "replace TAB characters with this string")
     .string("newline-replace").nargs("newline-replace").default("newline-replace", "\n")
@@ -123,11 +131,18 @@ syntax.richtext(input)
 
 /*  generate XML output  */
 let xml = syntax.html()
-if (argv.id !== "")
-    xml = `<${argv.prefix}block-${argv.id}>${xml}</${argv.prefix}block-${argv.id}>`
-else
+if (!argv.noBlock)
     xml = `<${argv.prefix}block>${xml}</${argv.prefix}block>`
-xml = `<${argv.prefix}root>${xml}</${argv.prefix}root>`
+if (!argv.noFile) {
+    if (argv.id !== "")
+        xml = `<${argv.prefix}file-${argv.id}>${xml}</${argv.prefix}file-${argv.id}>`
+    else
+        xml = `<${argv.prefix}file>${xml}</${argv.prefix}file>`
+}
+if (!argv.noRoot)
+    xml = `<${argv.prefix}root>${xml}</${argv.prefix}root>`
+if (!argv.noDeclaration)
+    xml = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n${xml}`
 let lexer = new Tokenizr()
 lexer.rule(/<span\s+class="(.+?)">/, (ctx, match) => { ctx.accept("tag-open", match[1]) })
 lexer.rule(/<\/span>/,               (ctx, match) => { ctx.accept("tag-close")          })

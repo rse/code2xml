@@ -53,6 +53,14 @@ $ code2xml [-h] [-V] [-l <language>] [-o <output-file>] [-f <input-file>]
 - `-p <prefix>`, `--prefix <prefix>`<br/>
   Either "syntax-" (the default) or an identifier to prepend to the
   name of all XML elements.
+- `--no-declaration`<br/>
+  Do not emit XML declaration.
+- `--no-root`<br/>
+  Do not emit root element `<xxx-root>`.
+- `--no-file`<br/>
+  Do not emit file element `<xxx-file[-XXX]>`.
+- `--no-block`<br/>
+  Do not emit block element `<xxx-block>`.
 - `--tab-replace <string>`<br/>
   replace TAB characters with this string.
 - `--newline-replace <string>`<br/>
@@ -84,14 +92,15 @@ const foo = (arg1, arg2=(1)=, arg3) => {
 }
 
 $ code2xml -f sample.js
-<syntax-root><syntax-block><syntax-comment>/* sample comment */</syntax-comment>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<syntax-root><syntax-file><syntax-block><syntax-comment>/* sample comment */</syntax-comment>
 <syntax-keyword>const</syntax-keyword> foo = (arg1, arg2<syntax-anchor-1></syntax-anchor-1>, arg3) =&gt; {
     <syntax-keyword>var</syntax-keyword> foo  = <syntax-literal>42</syntax-literal>
 <syntax-marker>    </syntax-marker><syntax-keyword><syntax-marker>var</syntax-marker></syntax-keyword><syntax-marker> bar  = </syntax-marker><syntax-literal><syntax-marker>"baz"</syntax-marker></syntax-literal><syntax-marker>    </syntax-marker> <syntax-anchor-2></syntax-anchor-2>
     <syntax-keyword>var</syntax-keyword> quux = <syntax-literal>/foo\/bar"quux"/</syntax-literal>
     <syntax-keyword>return</syntax-keyword> foo + bar + quux
 }
-</syntax-block></syntax-root>
+</syntax-block></syntax-file></syntax-root>
 ```
 
 License
