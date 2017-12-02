@@ -2,7 +2,7 @@
     "name":         "code2xml",
     "homepage":     "http://github.com/rse/code2xml",
     "description":  "Convert source code to syntax-annotated XML",
-    "version":      "0.9.8",
+    "version":      "0.9.9",
     "license":      "MIT",
     "author": {
         "name":     "Ralf S. Engelschall",
