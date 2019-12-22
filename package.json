@@ -21,9 +21,9 @@
     },
     "main":         "./code2xml.js",
     "dependencies" : {
-        "yargs":    "13.3.0",
-        "syntax":   "1.5.1",
-        "tokenizr": "1.5.4"
+        "yargs":    "15.0.2",
+        "syntax":   "1.5.2",
+        "tokenizr": "1.5.6"
     },
     "engines": {
         "node":     ">=8.0.0"
